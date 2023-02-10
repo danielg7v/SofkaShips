@@ -14,27 +14,28 @@ public class MongodbApplication {
 
 
 	public static void main(String[] args) {
-
+								// conexión base de datos alojada en MongoDB
 		DatabaseConection databaseConection = new DatabaseConection("mongodb+srv://admin:admin@cluster0.zkwopwe.mongodb.net/?retryWrites=true&w=majority");
-		databaseConection.setDatabase("SpaceShips");
-		databaseConection.setTypeOneCollection("typeOne");
+		databaseConection.setDatabase("SpaceShips");			// base de datos
+		databaseConection.setTypeOneCollection("typeOne");		// Clases
 		databaseConection.setTypeTwoCollection("typeTwo");
+		databaseConection.setTypeThreeCollection("typeThree");
 		System.out.println(databaseConection);
 
 
 
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter option");
+		System.out.println("Enter option");			// menu de opciones
 		System.out.println("1. Ingresar nueva nave");
 		System.out.println("2. Consultar naves");
 		System.out.println("3. Exit");
 
-		String option = scanner.nextLine();
-		while (!option.equals("3")){
+		String option = scanner.nextLine();			// lectura de datos ingresados por usuario
+		while (!option.equals("3")){				// ejecución infinita del código hasta que el usuario elija salir
 
 			switch(option) {
 				case "1":
-					System.out.println("Ingrese opción");
+					System.out.println("Ingrese opción");					// menu secundario para ingresar algún tipo de nave
 					System.out.println("1. Ingresar vehiculo lanzadera");
 					System.out.println("2. Ingresar nave no tripulada");
 					System.out.println("3. Ingresar nave tripulada");
@@ -42,18 +43,18 @@ public class MongodbApplication {
 
 					switch(opt) {
 						case "1": //para ingresar datos de vehiculo lanzadera
-							askDataLanzadera(databaseConection, scanner);
+							askDataLanzadera(databaseConection, scanner);		// función preguntar datos de nave tipo 1
 							break;
 						case "2":
-							askDataNotripulada(databaseConection, scanner);
+							askDataNotripulada(databaseConection, scanner);		// función preguntar datos de nave tipo 2
 							break;
 						case "3":
-
+							askDataTripulada(databaseConection, scanner);		// función preguntar datos de nave tipo 3
 							break;
 					}
 					break;
 				case "2":
-					System.out.println("caso 2");
+					System.out.println("Buscando en la base de datos...");		// Falta la sección de búsqueda en la DB
 
 					break;
 				case "3":

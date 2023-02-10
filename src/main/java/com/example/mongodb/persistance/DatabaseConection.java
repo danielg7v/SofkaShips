@@ -15,7 +15,6 @@ public class DatabaseConection {
     private MongoDatabase db;
     private MongoCollection<Document> typeOneCollection;
     private MongoCollection<Document> typeTwoCollection;
-
     private MongoCollection<Document> typeThreeCollection;
 
     public DatabaseConection(String uri){
@@ -30,13 +29,10 @@ public class DatabaseConection {
     public void setTypeOneCollection(String collection) {
         this.typeOneCollection = this.db.getCollection(collection);
     }
-
     public void setTypeTwoCollection(String collection) {
         this.typeTwoCollection = this.db.getCollection(collection);
     }
-    public void setTypeThreeCollection(String collection) {
-        this.typeThreeCollection = this.db.getCollection(collection);
-    }
+    public void setTypeThreeCollection(String collection) { this.typeThreeCollection = this.db.getCollection(collection); }
 
     public void insertLanzaderaToCollection(lanzadera lanzadera){
         this.typeOneCollection.insertOne(shipOneToDocument(lanzadera));
@@ -63,6 +59,14 @@ public class DatabaseConection {
         doc.append("name", notripulada.getName());
         doc.append("description", notripulada.getDescription());
         doc.append("color", notripulada.getColor());
+        return doc;
+    }
+
+    public  Document shipThreeToDocument(tripulada tripulada) {
+        Document doc = new Document();
+        doc.append("name", tripulada.getName());
+        doc.append("description", tripulada.getDescription());
+        doc.append("color", tripulada.getColor());
         return doc;
     }
 }
