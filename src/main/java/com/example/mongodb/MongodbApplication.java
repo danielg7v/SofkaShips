@@ -2,6 +2,7 @@ package com.example.mongodb;
 
 import com.example.mongodb.model.lanzadera;
 import com.example.mongodb.model.notripulada;
+import com.example.mongodb.model.tripulada;
 
 import com.example.mongodb.persistance.DatabaseConection;
 

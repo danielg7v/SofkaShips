@@ -2,6 +2,7 @@ package com.example.mongodb.persistance;
 
 import com.example.mongodb.model.lanzadera;
 import com.example.mongodb.model.notripulada;
+import com.example.mongodb.model.tripulada;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
@@ -14,6 +15,9 @@ public class DatabaseConection {
     private MongoDatabase db;
     private MongoCollection<Document> typeOneCollection;
     private MongoCollection<Document> typeTwoCollection;
+
+    private MongoCollection<Document> typeThreeCollection;
+
     public DatabaseConection(String uri){
         this.uri = new MongoClientURI(uri);
         this.client = new MongoClient(this.uri);
@@ -30,6 +34,9 @@ public class DatabaseConection {
     public void setTypeTwoCollection(String collection) {
         this.typeTwoCollection = this.db.getCollection(collection);
     }
+    public void setTypeThreeCollection(String collection) {
+        this.typeThreeCollection = this.db.getCollection(collection);
+    }
 
     public void insertLanzaderaToCollection(lanzadera lanzadera){
         this.typeOneCollection.insertOne(shipOneToDocument(lanzadera));
@@ -37,6 +44,10 @@ public class DatabaseConection {
 
     public void insertNoTripuladaToCollection(notripulada notripulada){
         this.typeTwoCollection.insertOne(shipTwoToDocument(notripulada));
+    }
+
+    public void insertTripuladaToCollection(tripulada tripulada){
+        this.typeThreeCollection.insertOne(shipThreeToDocument(tripulada));
     }
 
     public  Document shipOneToDocument(lanzadera lanzadera) {
